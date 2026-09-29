@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}BrawlDex | {{ brawler.nome }}{% endblock %}
+
+{% block content %}
+
+<div class="mb-4">
+
+    <a href="{% url 'brawlers' %}" class="btn btn-roxo">
+        <i class="bi bi-arrow-left"></i>
+        Voltar para Brawlers
+    </a>
+
+</div>
+
+<div class="card p-4">
+
+    <div class="row align-items-center">
+
+        <div class="col-md-5 text-center">
+
+            {% if brawler.imagem %}
+
+                <img src="{{ brawler.imagem.url }}"
+                     class="brawler-img"
+                     alt="{{ brawler.nome }}">
+
+            {% else %}
+
+                <i class="bi bi-person-bounding-box display-1 text-info"></i>
+
+            {% endif %}
+
+        </div>
+
+        <div class="col-md-7">
+
+            <h1 class="titulo-principal">
+                {{ brawler.nome }}
+            </h1>
+
+            <span class="badge-raridade">
+                {{ brawler.raridade }}
+            </span>
+
+            <p class="card-text mt-4">
+                <strong>Classe:</strong>
+                {{ brawler.classe }}
+            </p>
+
+            <div class="row text-center my-4">
+
+                <div class="col-6">
+
+                    <i class="bi bi-heart-fill text-danger fs-3"></i>
+
+                    <h4>
+                        {{ brawler.vida }}
+                    </h4>
+
+                    <small>
+                        Vida
+                    </small>
+
+                </div>
+
+                <div class="col-6">
+
+                    <i class="bi bi-lightning-fill text-warning fs-3"></i>
+
+                    <h4>
+                        {{ brawler.dano }}
+                    </h4>
+
+                    <small>
+                        Dano
+                    </small>
+
+                </div>
+
+            </div>
+
+            <h4 class="card-title">
+                Sobre o Brawler
+            </h4>
+
+            <p class="card-text">
+                {{ brawler.descricao }}
+            </p>
+
+            {% if user.is_authenticated %}
+
+                <div class="mt-4 d-flex gap-2">
+
+                    <a href="{% url 'brawler_update' brawler.id %}"
+                       class="btn btn-brawl">
+
+                        <i class="bi bi-pencil"></i>
+                        Editar
+
+                    </a>
+
+                    <a href="{% url 'brawler_delete' brawler.id %}"
+                       class="btn btn-danger">
+
+                        <i class="bi bi-trash"></i>
+                        Excluir
+
+                    </a>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}BrawlDex | Excluir Brawler{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-7">
+
+        <div class="card p-4 text-center">
+
+            <i class="bi bi-exclamation-triangle-fill text-warning display-3 mb-3"></i>
+
+            <h1 class="titulo-principal">
+                Excluir Brawler
+            </h1>
+
+            <p class="card-text mt-3">
+                Tem certeza que deseja excluir
+                <strong>{{ brawler.nome }}</strong>?
+            </p>
+
+            <p class="card-text">
+                Esta ação não poderá ser desfeita.
+            </p>
+
+            <form method="POST" class="mt-4">
+
+                {% csrf_token %}
+
+                <a href="{% url 'brawler_detail' brawler.id %}"
+                   class="btn btn-roxo me-2">
+
+                    <i class="bi bi-arrow-left"></i>
+                    Cancelar
+
+                </a>
+
+                <button type="submit" class="btn btn-danger">
+
+                    <i class="bi bi-trash"></i>
+                    Confirmar exclusão
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

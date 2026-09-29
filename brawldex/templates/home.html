@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block title %}BrawlDex | Início{% endblock %}
+
+{% block content %}
+
+<div class="text-center py-5">
+
+```
+<div class="mb-4">
+    <i class="bi bi-controller display-1 text-info"></i>
+</div>
+
+<h1 class="titulo-principal">
+    BrawlDex
+</h1>
+
+<p class="subtitulo mx-auto" style="max-width: 650px;">
+    Explore o catálogo de Brawlers, descubra suas características
+    e conheça melhor cada lutador.
+</p>
+
+<div class="mt-4">
+
+    <a href="{% url 'brawlers' %}" class="btn btn-brawl btn-lg">
+        <i class="bi bi-grid"></i>
+        Explorar Brawlers
+    </a>
+
+    {% if user.is_authenticated %}
+
+    <a href="{% url 'brawler_create' %}" class="btn btn-roxo btn-lg ms-2">
+        <i class="bi bi-plus-circle"></i>
+        Adicionar Brawler
+    </a>
+
+    {% else %}
+
+    <a href="{% url 'login' %}" class="btn btn-roxo btn-lg ms-2">
+        <i class="bi bi-box-arrow-in-right"></i>
+        Entrar
+    </a>
+
+    {% endif %}
+
+</div>
+```
+
+</div>
+
+<div class="row g-4 mt-4">
+
+```
+<div class="col-md-4">
+
+    <div class="card h-100 p-4 text-center">
+
+        <i class="bi bi-people display-4 text-info mb-3"></i>
+
+        <h3 class="card-title">
+            Brawlers
+        </h3>
+
+        <p class="card-text">
+            Veja todos os personagens cadastrados no catálogo.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="col-md-4">
+
+    <div class="card h-100 p-4 text-center">
+
+        <i class="bi bi-bar-chart-fill display-4 text-warning mb-3"></i>
+
+        <h3 class="card-title">
+            Estatísticas
+        </h3>
+
+        <p class="card-text">
+            Confira vida, dano, classe e raridade de cada Brawler.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="col-md-4">
+
+    <div class="card h-100 p-4 text-center">
+
+        <i class="bi bi-database-fill display-4 text-info mb-3"></i>
+
+        <h3 class="card-title">
+            Catálogo
+        </h3>
+
+        <p class="card-text">
+            Um banco de dados desenvolvido com Django
+            para organizar os Brawlers.
+        </p>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+{% endblock %}

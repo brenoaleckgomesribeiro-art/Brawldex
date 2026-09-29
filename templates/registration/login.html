@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}BrawlDex | Login{% endblock %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+
+    <div class="col-md-6 col-lg-5">
+
+        <div class="card p-4">
+
+            <h1 class="titulo-principal text-center mb-4">
+                Entrar
+            </h1>
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+                {{ form.as_p }}
+
+                <button type="submit" class="btn btn-brawl w-100">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Entrar
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
