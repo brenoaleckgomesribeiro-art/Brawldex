@@ -282,3 +282,95 @@ footer strong {
 main {
     animation: aparecer 0.4s ease;
 }
+
+
+/* ================================
+   HOME - HERO / NÚMEROS / CTA
+   (adições para a landing page)
+================================ */
+
+/* Hero em largura total, escapando do container do base.html */
+.hero-full {
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    width: 100vw;
+
+    background: radial-gradient(
+        circle at 50% 0%,
+        rgba(108, 77, 255, 0.35) 0%,
+        rgba(23, 20, 43, 0) 60%
+    );
+
+    border-bottom: 1px solid rgba(108, 77, 255, 0.25);
+}
+
+/* Ícone grande do hero */
+.hero-icon {
+    font-size: 5rem;
+    color: var(--azul);
+
+    display: inline-block;
+
+    filter: drop-shadow(0 8px 24px rgba(56, 189, 248, 0.35));
+}
+
+/* Números da seção de estatísticas */
+.stat-numero {
+    color: var(--amarelo);
+
+    font-size: 2.5rem;
+
+    font-weight: 900;
+
+    margin-bottom: 0.25rem;
+}
+
+/* Faixa amarela do CTA final */
+.cta-final {
+    background: var(--amarelo);
+
+    color: #17142B;
+
+    border-radius: 18px;
+
+    padding: 40px 25px;
+
+    box-shadow: 0 10px 30px rgba(255, 201, 40, 0.25);
+}
+
+.cta-final h2 {
+    color: #17142B;
+    font-weight: 900;
+}
+
+.cta-final p {
+    color: #17142B;
+}
+
+/* Ajustes para telas pequenas */
+@media (max-width: 768px) {
+
+    .titulo-principal {
+        font-size: 2.25rem;
+    }
+
+    .hero-icon {
+        font-size: 3.5rem;
+    }
+
+    .stat-numero {
+        font-size: 2rem;
+    }
+
+}
+
+/* Acessibilidade: respeitar preferência por menos animação */
+@media (prefers-reduced-motion: reduce) {
+
+    .card,
+    main {
+        transition: none;
+        animation: none;
+    }
+
+}
