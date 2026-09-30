@@ -49,9 +49,22 @@
                         {{ brawler.nome }}
                     </h3>
 
-                    <span class="badge-raridade">
-                        {{ brawler.raridade }}
-                    </span>
+                    {% if brawler.raridade == 'Comum' %}
+                        <span class="badge-raridade raridade-comum">{{ brawler.raridade }}</span>
+                    {% elif brawler.raridade == 'Raro' %}
+                        <span class="badge-raridade raridade-raro">{{ brawler.raridade }}</span>
+                    {% elif brawler.raridade == 'Super Raro' %}
+                        <span class="badge-raridade raridade-super-raro">{{ brawler.raridade }}</span>
+                    {% elif brawler.raridade == 'Épico' %}
+                        <span class="badge-raridade raridade-epico">{{ brawler.raridade }}</span>
+                    {% elif brawler.raridade == 'Mítico' %}
+                        <span class="badge-raridade raridade-mitico">{{ brawler.raridade }}</span>
+                    {% elif brawler.raridade == 'Lendário' %}
+                        <span class="badge-raridade raridade-lendario">{{ brawler.raridade }}</span>
+                    {% else %}
+                        <span class="badge-raridade">{{ brawler.raridade }}</span>
+                    {% endif %}
+
                 </div>
 
                 <p class="card-text">
