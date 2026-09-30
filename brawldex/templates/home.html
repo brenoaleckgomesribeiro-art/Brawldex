@@ -4,111 +4,176 @@
 
 {% block content %}
 
-<div class="text-center py-5">
+<!-- ===================== HERO ===================== -->
+<section class="hero-full text-center">
 
-```
-<div class="mb-4">
-    <i class="bi bi-controller display-1 text-info"></i>
-</div>
+    <div class="container py-5">
 
-<h1 class="titulo-principal">
-    BrawlDex
-</h1>
+        <div class="mb-4">
+            <i class="bi bi-controller hero-icon"></i>
+        </div>
 
-<p class="subtitulo mx-auto" style="max-width: 650px;">
-    Explore o catálogo de Brawlers, descubra suas características
-    e conheça melhor cada lutador.
-</p>
+        <h1 class="titulo-principal">
+            BrawlDex
+        </h1>
 
-<div class="mt-4">
-
-    <a href="{% url 'brawlers' %}" class="btn btn-brawl btn-lg">
-        <i class="bi bi-grid"></i>
-        Explorar Brawlers
-    </a>
-
-    {% if user.is_authenticated %}
-
-    <a href="{% url 'brawler_create' %}" class="btn btn-roxo btn-lg ms-2">
-        <i class="bi bi-plus-circle"></i>
-        Adicionar Brawler
-    </a>
-
-    {% else %}
-
-    <a href="{% url 'login' %}" class="btn btn-roxo btn-lg ms-2">
-        <i class="bi bi-box-arrow-in-right"></i>
-        Entrar
-    </a>
-
-    {% endif %}
-
-</div>
-```
-
-</div>
-
-<div class="row g-4 mt-4">
-
-```
-<div class="col-md-4">
-
-    <div class="card h-100 p-4 text-center">
-
-        <i class="bi bi-people display-4 text-info mb-3"></i>
-
-        <h3 class="card-title">
-            Brawlers
-        </h3>
-
-        <p class="card-text">
-            Veja todos os personagens cadastrados no catálogo.
+        <p class="subtitulo mx-auto" style="max-width: 650px;">
+            Explore o catálogo de Brawlers, descubra suas características
+            e conheça melhor cada lutador.
         </p>
+
+        <div class="mt-4 d-flex flex-wrap justify-content-center gap-2">
+
+            <a href="{% url 'brawlers' %}" class="btn btn-brawl btn-lg">
+                <i class="bi bi-grid"></i>
+                Explorar Brawlers
+            </a>
+
+            {% if user.is_authenticated %}
+
+                <a href="{% url 'brawler_create' %}" class="btn btn-roxo btn-lg">
+                    <i class="bi bi-plus-circle"></i>
+                    Adicionar Brawler
+                </a>
+
+            {% else %}
+
+                <a href="{% url 'login' %}" class="btn btn-roxo btn-lg">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    Entrar
+                </a>
+
+            {% endif %}
+
+        </div>
 
     </div>
 
-</div>
+</section>
 
 
-<div class="col-md-4">
+<!-- ===================== CARDS DE FUNCIONALIDADES ===================== -->
+<section class="container py-5">
 
-    <div class="card h-100 p-4 text-center">
+    <div class="text-center mb-5">
+        <h2 class="titulo-principal" style="font-size: 2rem;">O que você encontra no BrawlDex</h2>
+        <p class="subtitulo">Funcionalidades pensadas para explorar o catálogo.</p>
+    </div>
 
-        <i class="bi bi-bar-chart-fill display-4 text-warning mb-3"></i>
+    <div class="row g-4">
 
-        <h3 class="card-title">
-            Estatísticas
-        </h3>
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 p-4 text-center">
+                <i class="bi bi-people display-4 text-info mb-3"></i>
+                <h3 class="card-title">Catálogo completo</h3>
+                <p class="card-text">
+                    Veja todos os Brawlers cadastrados em uma grade organizada.
+                </p>
+            </div>
+        </div>
 
-        <p class="card-text">
-            Confira vida, dano, classe e raridade de cada Brawler.
-        </p>
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 p-4 text-center">
+                <i class="bi bi-bar-chart-fill display-4 text-warning mb-3"></i>
+                <h3 class="card-title">Estatísticas</h3>
+                <p class="card-text">
+                    Vida, dano, classe e raridade de cada Brawler em detalhes.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 p-4 text-center">
+                <i class="bi bi-plus-circle-fill display-4 text-info mb-3"></i>
+                <h3 class="card-title">Cadastro fácil</h3>
+                <p class="card-text">
+                    Adicione novos Brawlers com formulário e upload de imagem.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 p-4 text-center">
+                <i class="bi bi-pencil-square display-4 text-warning mb-3"></i>
+                <h3 class="card-title">Edição rápida</h3>
+                <p class="card-text">
+                    Atualize atributos e informações dos Brawlers a qualquer momento.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 p-4 text-center">
+                <i class="bi bi-trash-fill display-4 text-info mb-3"></i>
+                <h3 class="card-title">Exclusão segura</h3>
+                <p class="card-text">
+                    Remova Brawlers com confirmação para evitar acidentes.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 p-4 text-center">
+                <i class="bi bi-shield-lock-fill display-4 text-warning mb-3"></i>
+                <h3 class="card-title">Login seguro</h3>
+                <p class="card-text">
+                    Áreas de cadastro, edição e exclusão protegidas por autenticação.
+                </p>
+            </div>
+        </div>
 
     </div>
 
-</div>
+</section>
 
 
-<div class="col-md-4">
+<!-- ===================== NÚMEROS ===================== -->
+<section class="container pb-5">
 
-    <div class="card h-100 p-4 text-center">
+    <div class="card p-4">
 
-        <i class="bi bi-database-fill display-4 text-info mb-3"></i>
+        <div class="row text-center g-4">
 
-        <h3 class="card-title">
-            Catálogo
-        </h3>
+            <div class="col-md-4">
+                <h3 class="stat-numero">{{ total_brawlers }}</h3>
+                <p class="card-text mb-0 text-uppercase small">Brawlers cadastrados</p>
+            </div>
 
-        <p class="card-text">
-            Um banco de dados desenvolvido com Django
-            para organizar os Brawlers.
-        </p>
+            <div class="col-md-4">
+                <h3 class="stat-numero">{{ total_raridades }}</h3>
+                <p class="card-text mb-0 text-uppercase small">Raridades diferentes</p>
+            </div>
+
+            <div class="col-md-4">
+                <h3 class="stat-numero">100%</h3>
+                <p class="card-text mb-0 text-uppercase small">Feito em Django</p>
+            </div>
+
+        </div>
 
     </div>
 
-</div>
-```
+</section>
 
-</div>
+
+<!-- ===================== CTA FINAL ===================== -->
+<section class="container pb-5">
+
+    <div class="cta-final text-center">
+
+        <h2 class="mb-3">Pronto para começar?</h2>
+
+        <p class="mb-4">
+            Explore o catálogo completo e descubra todos os Brawlers disponíveis.
+        </p>
+
+        <a href="{% url 'brawlers' %}" class="btn btn-roxo btn-lg">
+            <i class="bi bi-arrow-right-circle"></i>
+            Ver todos os Brawlers
+        </a>
+
+    </div>
+
+</section>
 
 {% endblock %}

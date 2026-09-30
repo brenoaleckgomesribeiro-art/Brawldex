@@ -6,7 +6,20 @@ from .forms import BrawlerForm
 
 
 def home_view(request):
-    return render(request, 'home.html')
+
+    total_brawlers = Brawler.objects.count()
+
+    total_raridades = (
+        Brawler.objects
+        .values('raridade')
+        .distinct()
+        .count()
+    )
+
+    return render(request, 'home.html', {
+        'total_brawlers': total_brawlers,
+        'total_raridades': total_raridades,
+    })
 
 
 def brawlers_view(request):

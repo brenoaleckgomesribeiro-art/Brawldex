@@ -25,6 +25,12 @@
                      class="brawler-img"
                      alt="{{ brawler.nome }}">
 
+            {% elif brawler.imagem_url %}
+
+                <img src="{{ brawler.imagem_url }}"
+                     class="brawler-img"
+                     alt="{{ brawler.nome }}">
+
             {% else %}
 
                 <i class="bi bi-person-bounding-box display-1 text-info"></i>
