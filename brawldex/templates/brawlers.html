@@ -21,7 +21,7 @@
 </div>
 
 <!-- ============ BUSCA ============ -->
-<form method="get" action="{% url 'brawlers' %}" class="mb-3">
+<form method="get" action="{% url 'brawlers' %}" class="busca-box mb-4">
 
     {% if raridade_selecionada %}
         <input type="hidden" name="raridade" value="{{ raridade_selecionada }}">
@@ -29,13 +29,13 @@
 
     <div class="input-group">
 
-        <span class="input-group-text bg-dark text-light border-secondary">
+        <span class="input-group-text busca-icon">
             <i class="bi bi-search"></i>
         </span>
 
         <input type="text"
                name="q"
-               class="form-control bg-dark text-light border-secondary"
+               class="form-control busca-input"
                placeholder="Buscar Brawler pelo nome..."
                value="{{ busca }}">
 
@@ -56,26 +56,35 @@
 </form>
 
 <!-- ============ FILTRO POR RARIDADE ============ -->
-<div class="filtros-raridade mb-4">
+<div class="filtros-box mb-4">
 
-    <a href="{% url 'brawlers' %}{% if busca %}?q={{ busca|urlencode }}{% endif %}"
-       class="filtro-pill {% if not raridade_selecionada %}filtro-pill-ativo{% endif %}">
+    <p class="filtros-label">
+        <i class="bi bi-funnel-fill"></i>
+        Filtrar por raridade
+    </p>
 
-        <i class="bi bi-grid-fill"></i>
-        Todos
+    <div class="filtros-raridade">
 
-    </a>
+        <a href="{% url 'brawlers' %}{% if busca %}?q={{ busca|urlencode }}{% endif %}"
+           class="filtro-pill {% if not raridade_selecionada %}filtro-pill-ativo{% endif %}">
 
-    {% for raridade in raridades %}
-
-        <a href="{% url 'brawlers' %}?raridade={{ raridade|urlencode }}{% if busca %}&q={{ busca|urlencode }}{% endif %}"
-           class="filtro-pill {% if raridade_selecionada == raridade %}filtro-pill-ativo{% endif %}">
-
-            {{ raridade }}
+            <i class="bi bi-grid-fill"></i>
+            Todos
 
         </a>
 
-    {% endfor %}
+        {% for raridade in raridades %}
+
+            <a href="{% url 'brawlers' %}?raridade={{ raridade|urlencode }}{% if busca %}&q={{ busca|urlencode }}{% endif %}"
+               class="filtro-pill {% if raridade_selecionada == raridade %}filtro-pill-ativo{% endif %}">
+
+                {{ raridade }}
+
+            </a>
+
+        {% endfor %}
+
+    </div>
 
 </div>
 
@@ -112,7 +121,7 @@
                         <span class="badge-raridade raridade-comum">{{ brawler.raridade }}</span>
                     {% elif brawler.raridade == 'Raro' %}
                         <span class="badge-raridade raridade-raro">{{ brawler.raridade }}</span>
-                    {% elif brawler.raridade == 'Super Raro' %}
+                    {% elif brawler.raridade == 'Super-raro' %}
                         <span class="badge-raridade raridade-super-raro">{{ brawler.raridade }}</span>
                     {% elif brawler.raridade == 'Épico' %}
                         <span class="badge-raridade raridade-epico">{{ brawler.raridade }}</span>
@@ -120,6 +129,8 @@
                         <span class="badge-raridade raridade-mitico">{{ brawler.raridade }}</span>
                     {% elif brawler.raridade == 'Lendário' %}
                         <span class="badge-raridade raridade-lendario">{{ brawler.raridade }}</span>
+                    {% elif brawler.raridade == 'Ultralendário' %}
+                        <span class="badge-raridade raridade-ultralendario">{{ brawler.raridade }}</span>
                     {% else %}
                         <span class="badge-raridade">{{ brawler.raridade }}</span>
                     {% endif %}

@@ -5,6 +5,18 @@ from .models import Brawler
 from .forms import BrawlerForm
 
 
+# Ordem "oficial" das raridades (progressão do jogo)
+ORDEM_RARIDADES = [
+    'Comum',
+    'Raro',
+    'Super-raro',
+    'Épico',
+    'Mítico',
+    'Lendário',
+    'Ultralendário',
+]
+
+
 def home_view(request):
 
     total_brawlers = Brawler.objects.count()
@@ -28,12 +40,18 @@ def sobre_view(request):
 
 def brawlers_view(request):
 
-    raridades = (
+    raridades_no_banco = (
         Brawler.objects
         .values_list('raridade', flat=True)
         .distinct()
-        .order_by('raridade')
     )
+
+    def chave_ordenacao(raridade):
+        if raridade in ORDEM_RARIDADES:
+            return (0, ORDEM_RARIDADES.index(raridade))
+        return (1, raridade)
+
+    raridades = sorted(raridades_no_banco, key=chave_ordenacao)
 
     raridade_selecionada = request.GET.get('raridade', '').strip()
     busca = request.GET.get('q', '').strip()

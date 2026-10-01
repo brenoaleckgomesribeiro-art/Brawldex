@@ -13,10 +13,11 @@
 
 </div>
 
-<div class="card p-4">
+<div class="card p-4 p-md-5">
 
-    <div class="row align-items-center">
+    <div class="row align-items-center g-4">
 
+        <!-- ============ IMAGEM ============ -->
         <div class="col-md-5 text-center">
 
             {% if brawler.imagem %}
@@ -39,52 +40,73 @@
 
         </div>
 
+        <!-- ============ INFORMAÇÕES ============ -->
         <div class="col-md-7">
 
-            <h1 class="titulo-principal">
+            <h1 class="titulo-principal mb-2">
                 {{ brawler.nome }}
             </h1>
 
-            <span class="badge-raridade">
-                {{ brawler.raridade }}
-            </span>
+            {% if brawler.raridade == 'Comum' %}
+                <span class="badge-raridade raridade-comum">{{ brawler.raridade }}</span>
+            {% elif brawler.raridade == 'Raro' %}
+                <span class="badge-raridade raridade-raro">{{ brawler.raridade }}</span>
+            {% elif brawler.raridade == 'Super-raro' %}
+                <span class="badge-raridade raridade-super-raro">{{ brawler.raridade }}</span>
+            {% elif brawler.raridade == 'Épico' %}
+                <span class="badge-raridade raridade-epico">{{ brawler.raridade }}</span>
+            {% elif brawler.raridade == 'Mítico' %}
+                <span class="badge-raridade raridade-mitico">{{ brawler.raridade }}</span>
+            {% elif brawler.raridade == 'Lendário' %}
+                <span class="badge-raridade raridade-lendario">{{ brawler.raridade }}</span>
+            {% elif brawler.raridade == 'Ultralendário' %}
+                <span class="badge-raridade raridade-ultralendario">{{ brawler.raridade }}</span>
+            {% else %}
+                <span class="badge-raridade">{{ brawler.raridade }}</span>
+            {% endif %}
 
-            <p class="card-text mt-4">
+            <p class="card-text mt-3">
                 <strong>Classe:</strong>
                 {{ brawler.classe }}
             </p>
 
-            <div class="row text-center my-4">
+            <div class="mt-4">
 
-                <div class="col-6">
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span>
+                            <i class="bi bi-heart-fill text-danger"></i>
+                            <strong>Vida</strong>
+                        </span>
+                        <strong>{{ brawler.vida }}</strong>
+                    </div>
 
-                    <i class="bi bi-heart-fill text-danger fs-3"></i>
-
-                    <h4>
-                        {{ brawler.vida }}
-                    </h4>
-
-                    <small>
-                        Vida
-                    </small>
-
+                    <div class="barra">
+                        <div class="barra-preenchimento barra-vida"
+                             style="width: {% widthratio brawler.vida 10000 100 %}%;">
+                        </div>
+                    </div>
                 </div>
 
-                <div class="col-6">
+                <div class="mb-3">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <span>
+                            <i class="bi bi-lightning-fill text-warning"></i>
+                            <strong>Dano</strong>
+                        </span>
+                        <strong>{{ brawler.dano }}</strong>
+                    </div>
 
-                    <i class="bi bi-lightning-fill text-warning fs-3"></i>
-
-                    <h4>
-                        {{ brawler.dano }}
-                    </h4>
-
-                    <small>
-                        Dano
-                    </small>
-
+                    <div class="barra">
+                        <div class="barra-preenchimento barra-dano"
+                             style="width: {% widthratio brawler.dano 5000 100 %}%;">
+                        </div>
+                    </div>
                 </div>
 
             </div>
+
+            <hr class="my-4">
 
             <h4 class="card-title">
                 Sobre o Brawler
