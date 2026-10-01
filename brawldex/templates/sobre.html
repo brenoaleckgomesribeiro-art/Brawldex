@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}BrawlDex | Sobre{% endblock %}
+
+{% block content %}
+
+<div class="text-center mb-5">
+    <h1 class="titulo-principal mb-2">Sobre o BrawlDex</h1>
+    <p class="subtitulo mx-auto" style="max-width: 700px;">
+        Um catálogo de Brawlers inspirado em Brawl Stars, desenvolvido
+        como projeto escolar em Django.
+    </p>
+</div>
+
+<div class="row g-4 mb-4">
+
+    <div class="col-md-6">
+        <div class="card h-100 p-4">
+            <h3 class="card-title">
+                <i class="bi bi-controller"></i>
+                O projeto
+            </h3>
+            <p class="card-text">
+                O BrawlDex permite explorar um catálogo de Brawlers, ver
+                detalhes como raridade, classe, vida e dano, além de
+                cadastrar, editar e excluir personagens — tudo protegido
+                por autenticação.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card h-100 p-4">
+            <h3 class="card-title">
+                <i class="bi bi-code-slash"></i>
+                Tecnologias
+            </h3>
+            <ul class="card-text mb-0">
+                <li>Python</li>
+                <li>Django</li>
+                <li>SQLite</li>
+                <li>HTML + CSS</li>
+                <li>Bootstrap 5</li>
+                <li>Bootstrap Icons</li>
+                <li>Pillow (upload de imagens)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card h-100 p-4">
+            <h3 class="card-title">
+                <i class="bi bi-person-badge"></i>
+                Autor
+            </h3>
+            <p class="card-text">
+                Projeto desenvolvido por <strong>Breno Aleck</strong> como
+                atividade escolar de Django.
+            </p>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card h-100 p-4">
+            <h3 class="card-title">
+                <i class="bi bi-info-circle"></i>
+                Créditos
+            </h3>
+            <p class="card-text">
+                Brawl Stars e todos os Brawlers são propriedades da
+                <strong>Supercell</strong>. Este projeto é uma homenagem
+                educacional, sem fins comerciais.
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<div class="text-center">
+    <a href="{% url 'brawlers' %}" class="btn btn-brawl btn-lg">
+        <i class="bi bi-grid"></i>
+        Explorar Brawlers
+    </a>
+</div>
+
+{% endblock %}

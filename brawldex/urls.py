@@ -2,6 +2,7 @@ from django.urls import path
 
 from .views import (
     home_view,
+    sobre_view,
     brawlers_view,
     brawler_detail,
     brawler_create,
@@ -16,6 +17,12 @@ urlpatterns = [
         '',
         home_view,
         name='home'
+    ),
+
+    path(
+        'sobre/',
+        sobre_view,
+        name='sobre'
     ),
 
     path(

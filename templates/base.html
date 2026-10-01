@@ -52,21 +52,56 @@
                         </a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="/sobre/">
+                            <i class="bi bi-info-circle"></i>
+                            Sobre
+                        </a>
+                    </li>
+
                     {% if user.is_authenticated %}
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/brawlers/criar/">
-                            <i class="bi bi-plus-circle"></i>
-                            Adicionar
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/brawlers/criar/">
+                                <i class="bi bi-plus-circle"></i>
+                                Adicionar
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin/">
-                            <i class="bi bi-person-circle"></i>
-                            Admin
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/">
+                                <i class="bi bi-person-circle"></i>
+                                Admin
+                            </a>
+                        </li>
+
+                        <li class="nav-item d-flex align-items-center">
+                            <span class="navbar-text text-warning ms-2">
+                                <i class="bi bi-person-check"></i>
+                                Olá, {{ user.username }}
+                            </span>
+                        </li>
+
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'logout' %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit"
+                                        class="nav-link btn btn-link text-decoration-none"
+                                        style="color: #ef4444 !important;">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    Sair
+                                </button>
+                            </form>
+                        </li>
+
+                    {% else %}
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">
+                                <i class="bi bi-box-arrow-in-right"></i>
+                                Entrar
+                            </a>
+                        </li>
 
                     {% endif %}
 

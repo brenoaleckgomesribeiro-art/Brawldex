@@ -20,10 +20,45 @@
     {% endif %}
 </div>
 
+<!-- ============ BUSCA ============ -->
+<form method="get" action="{% url 'brawlers' %}" class="mb-3">
+
+    {% if raridade_selecionada %}
+        <input type="hidden" name="raridade" value="{{ raridade_selecionada }}">
+    {% endif %}
+
+    <div class="input-group">
+
+        <span class="input-group-text bg-dark text-light border-secondary">
+            <i class="bi bi-search"></i>
+        </span>
+
+        <input type="text"
+               name="q"
+               class="form-control bg-dark text-light border-secondary"
+               placeholder="Buscar Brawler pelo nome..."
+               value="{{ busca }}">
+
+        <button type="submit" class="btn btn-brawl">
+            Buscar
+        </button>
+
+        {% if busca %}
+            <a href="{% url 'brawlers' %}{% if raridade_selecionada %}?raridade={{ raridade_selecionada|urlencode }}{% endif %}"
+               class="btn btn-outline-secondary">
+                <i class="bi bi-x-circle"></i>
+                Limpar
+            </a>
+        {% endif %}
+
+    </div>
+
+</form>
+
 <!-- ============ FILTRO POR RARIDADE ============ -->
 <div class="filtros-raridade mb-4">
 
-    <a href="{% url 'brawlers' %}"
+    <a href="{% url 'brawlers' %}{% if busca %}?q={{ busca|urlencode }}{% endif %}"
        class="filtro-pill {% if not raridade_selecionada %}filtro-pill-ativo{% endif %}">
 
         <i class="bi bi-grid-fill"></i>
@@ -33,7 +68,7 @@
 
     {% for raridade in raridades %}
 
-        <a href="{% url 'brawlers' %}?raridade={{ raridade|urlencode }}"
+        <a href="{% url 'brawlers' %}?raridade={{ raridade|urlencode }}{% if busca %}&q={{ busca|urlencode }}{% endif %}"
            class="filtro-pill {% if raridade_selecionada == raridade %}filtro-pill-ativo{% endif %}">
 
             {{ raridade }}
@@ -133,8 +168,8 @@
             <h3>Nenhum Brawler encontrado</h3>
 
             <p class="card-text">
-                {% if raridade_selecionada %}
-                    Nenhum Brawler com a raridade "{{ raridade_selecionada }}".
+                {% if busca or raridade_selecionada %}
+                    Nenhum resultado com os filtros atuais.
                 {% else %}
                     Ainda não existem Brawlers no banco de dados.
                 {% endif %}

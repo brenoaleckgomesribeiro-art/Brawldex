@@ -22,9 +22,12 @@ def home_view(request):
     })
 
 
+def sobre_view(request):
+    return render(request, 'sobre.html')
+
+
 def brawlers_view(request):
 
-    # Lista de raridades existentes no banco (para montar os botões de filtro)
     raridades = (
         Brawler.objects
         .values_list('raridade', flat=True)
@@ -32,19 +35,22 @@ def brawlers_view(request):
         .order_by('raridade')
     )
 
-    # Raridade selecionada via query string (?raridade=...)
     raridade_selecionada = request.GET.get('raridade', '').strip()
+    busca = request.GET.get('q', '').strip()
 
-    # Filtra se houver seleção; senão, mostra todos
+    brawlers = Brawler.objects.all()
+
     if raridade_selecionada:
-        brawlers = Brawler.objects.filter(raridade=raridade_selecionada)
-    else:
-        brawlers = Brawler.objects.all()
+        brawlers = brawlers.filter(raridade=raridade_selecionada)
+
+    if busca:
+        brawlers = brawlers.filter(nome__icontains=busca)
 
     return render(request, 'brawlers.html', {
         'brawlers': brawlers,
         'raridades': raridades,
         'raridade_selecionada': raridade_selecionada,
+        'busca': busca,
     })
 
 
