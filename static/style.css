@@ -288,7 +288,6 @@ main {
    HOME - HERO / NÚMEROS / CTA
 ================================ */
 
-/* Hero em largura total, escapando do container do base.html */
 .hero-full {
     margin-left: calc(-50vw + 50%);
     margin-right: calc(-50vw + 50%);
@@ -303,7 +302,6 @@ main {
     border-bottom: 1px solid rgba(108, 77, 255, 0.25);
 }
 
-/* Ícone grande do hero */
 .hero-icon {
     font-size: 5rem;
     color: var(--azul);
@@ -313,7 +311,6 @@ main {
     filter: drop-shadow(0 8px 24px rgba(56, 189, 248, 0.35));
 }
 
-/* Números da seção de estatísticas */
 .stat-numero {
     color: var(--amarelo);
 
@@ -324,7 +321,6 @@ main {
     margin-bottom: 0.25rem;
 }
 
-/* Faixa amarela do CTA final */
 .cta-final {
     background: var(--amarelo);
 
@@ -346,7 +342,6 @@ main {
     color: #17142B;
 }
 
-/* Ajustes para telas pequenas */
 @media (max-width: 768px) {
 
     .titulo-principal {
@@ -363,7 +358,6 @@ main {
 
 }
 
-/* Acessibilidade: respeitar preferência por menos animação */
 @media (prefers-reduced-motion: reduce) {
 
     .card,
@@ -377,10 +371,8 @@ main {
 
 /* ================================
    DETALHE DO BRAWLER
-   (barras de vida/dano e raridades coloridas)
 ================================ */
 
-/* Barras */
 .barra {
     width: 100%;
     height: 14px;
@@ -420,7 +412,11 @@ main {
     );
 }
 
-/* Variações do badge de raridade */
+
+/* ================================
+   BADGES POR RARIDADE
+================================ */
+
 .badge-raridade.raridade-comum {
     background: #6b7280;
 }
@@ -446,33 +442,130 @@ main {
     color: #17142B;
 }
 
+.badge-raridade.raridade-ultralendario {
+    background: linear-gradient(
+        135deg,
+        #ff4fd8 0%,
+        #FFC928 100%
+    );
+    color: #17142B;
+    font-weight: 800;
+
+    box-shadow: 0 0 12px rgba(255, 79, 216, 0.4);
+}
+
 
 /* ================================
-   FILTROS DE RARIDADE (lista de Brawlers)
+   BUSCA E FILTROS
 ================================ */
+
+.busca-box {
+    background: var(--bg-secundario);
+
+    border: 1px solid rgba(108, 77, 255, 0.35);
+
+    border-radius: 14px;
+
+    padding: 14px;
+}
+
+.busca-box .input-group {
+    gap: 8px;
+}
+
+.busca-icon {
+    background: rgba(255, 255, 255, 0.06) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+    color: var(--cinza) !important;
+
+    border-radius: 10px !important;
+}
+
+.busca-input {
+    background: rgba(255, 255, 255, 0.04) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+    color: var(--branco) !important;
+
+    border-radius: 10px !important;
+}
+
+.busca-input::placeholder {
+    color: rgba(184, 182, 201, 0.6);
+}
+
+.busca-input:focus {
+    background: rgba(255, 255, 255, 0.06) !important;
+
+    border-color: var(--roxo) !important;
+
+    box-shadow: 0 0 0 0.2rem rgba(108, 77, 255, 0.25) !important;
+
+    color: var(--branco) !important;
+}
+
+.filtros-box {
+    background: var(--bg-secundario);
+
+    border: 1px solid rgba(108, 77, 255, 0.35);
+
+    border-radius: 14px;
+
+    padding: 18px;
+}
+
+.filtros-label {
+    color: var(--cinza);
+
+    font-size: 0.85rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    margin-bottom: 14px;
+}
+
+.filtros-label i {
+    color: var(--amarelo);
+
+    margin-right: 6px;
+}
 
 .filtros-raridade {
     display: flex;
+
     flex-wrap: wrap;
-    gap: 8px;
+
+    gap: 12px;
 }
 
 .filtro-pill {
     display: inline-flex;
-    align-items: center;
-    gap: 6px;
 
-    padding: 8px 16px;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 10px 20px;
 
     background: rgba(255, 255, 255, 0.06);
 
     color: var(--cinza);
+
     text-decoration: none;
 
     border: 1px solid rgba(255, 255, 255, 0.1);
+
     border-radius: 999px;
 
     font-weight: 600;
+
     font-size: 0.9rem;
 
     transition: 0.2s;
@@ -480,19 +573,40 @@ main {
 
 .filtro-pill:hover {
     background: rgba(108, 77, 255, 0.2);
+
     border-color: var(--roxo);
+
     color: var(--branco);
+
     transform: translateY(-2px);
 }
 
 .filtro-pill-ativo {
     background: var(--amarelo) !important;
+
     border-color: var(--amarelo) !important;
+
     color: #17142B !important;
+
     font-weight: 800;
 }
 
 .filtro-pill-ativo:hover {
     background: #FFD84F !important;
+
     color: #17142B !important;
+}
+
+@media (max-width: 576px) {
+
+    .busca-box .input-group {
+        flex-wrap: wrap;
+    }
+
+    .busca-box .input-group .btn {
+        width: 100%;
+
+        margin-top: 4px;
+    }
+
 }
