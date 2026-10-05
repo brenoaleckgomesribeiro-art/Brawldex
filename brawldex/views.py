@@ -1,8 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
+from django.contrib import messages
 
 from .models import Brawler
-from .forms import BrawlerForm
+from .forms import BrawlerForm, CadastroForm, PerfilForm
 
 
 # Ordem "oficial" das raridades (progressão do jogo)
@@ -140,4 +142,60 @@ def brawler_delete(request, id):
 
     return render(request, 'brawler_confirm_delete.html', {
         'brawler': brawler
+    })
+
+
+# ============================================================
+# CADASTRO E PERFIL
+# ============================================================
+
+def signup_view(request):
+    """
+    Cadastro público de usuário.
+    Depois de criar, faz login automático e redireciona pra home.
+    """
+
+    if request.user.is_authenticated:
+        return redirect('home')
+
+    if request.method == 'POST':
+        form = CadastroForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(
+                request,
+                f'Bem-vindo ao BrawlDex, {user.username}!'
+            )
+            return redirect('home')
+
+    else:
+        form = CadastroForm()
+
+    return render(request, 'signup.html', {
+        'form': form
+    })
+
+
+@login_required
+def perfil_view(request):
+    """
+    Ver e editar dados da conta: nome, sobrenome, email.
+    Trocar senha fica em /accounts/password_change/ (view do Django).
+    """
+
+    if request.method == 'POST':
+        form = PerfilForm(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Perfil atualizado com sucesso.')
+            return redirect('perfil')
+
+    else:
+        form = PerfilForm(instance=request.user)
+
+    return render(request, 'perfil.html', {
+        'form': form
     })

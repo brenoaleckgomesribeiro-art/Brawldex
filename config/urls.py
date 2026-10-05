@@ -16,6 +16,14 @@ urlpatterns = [
         include('brawldex.urls')
     ),
 
+    # Rotas customizadas (signup, perfil, trocar senha)
+    # Precisam vir ANTES do auth.urls, senão não sobrescrevem nada.
+    path(
+        'accounts/',
+        include('brawldex.urls_accounts')
+    ),
+
+    # Rotas padrão do Django (login, logout, password reset, etc)
     path(
         'accounts/',
         include('django.contrib.auth.urls')
